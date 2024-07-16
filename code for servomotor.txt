@@ -1,0 +1,23 @@
+#include <Servo.h>
+
+Servo myServo; // Create a servo object
+
+void setup() {
+  myServo.attach(9); // Attach the servo to pin 9
+}
+
+void loop() {
+  int tremorAmplitude = 10; // Set the amplitude of the tremor (adjust as needed)
+  int tremorFrequency = 5; // Set the frequency of the tremor in Hz (adjust as needed)
+
+  }
+// Generate a sinusoidal tremor pattern
+  int tremor = tremorAmplitude * sin(2 * PI * tremorFrequency * millis() / 1000.0);
+
+  // Map the tremor values to servo positions
+  int servoPosition = map(tremor, -tremorAmplitude, tremorAmplitude, 0, 180);
+
+  // Move the servo to the calculated position
+  myServo.write(servoPosition);
+
+  delay(2.5); // Adjust the delay for the desired frequency (50 Hz = 20 ms)
